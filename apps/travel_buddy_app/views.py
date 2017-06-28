@@ -14,7 +14,7 @@ def index(request):
     return render(request, 'travel_buddy_app/index.html')
 
 def travel_dashboard(request):
-    print "*"*42
+    # print "*"*42
     if not request.session.get('id'):
         messages.error(request, 'Access Denied. Log in first.')
         return redirect('/')
@@ -27,7 +27,7 @@ def travel_dashboard(request):
         'trips': trips,
         'other_trips': other_trips,
     }
-    print context
+    # print context
     return render(request, 'travel_buddy_app/travels.html', context)
 
 def travel_add(request):
@@ -63,7 +63,7 @@ def travel_add_trip(request):
 
 def join_trip(request, id):
     trip = Trip.objects.get(id=id)
-    print trip
+    # print trip
     user = User.objects.get(id=request.session.get('id'))
     # trip.add(users=request.session['id'])
     trip.users.add(user)
